@@ -139,7 +139,19 @@ void Sort_by_Name(Library books[], int size)
 	}
 }
 
-
+void Sort_by_Author(Library books[], int size)
+{
+	for (int i = 0; i < size - 1; i++)
+	{
+		for (int j = i + 1; j < size; j++)
+		{
+			if (strcmp(books[j].Author_Book, books[i].Author_Book) == -1)
+			{
+				swap(books[i], books[j]);
+			}
+		}
+	}
+}
 
 
 
