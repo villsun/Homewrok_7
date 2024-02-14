@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+﻿#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <string.h>
 
@@ -167,12 +167,81 @@ void Sort_by_Publishing(Library books[], int size)
 	}
 }
 
+void Change_Name(Library book[], char* str_new_name, int number_of_book)
+{
+	strcpy(book[number_of_book].Name_Book, str_new_name);
+}
 
+void Change_Author(Library book[], char* str_new_author, int number_of_book)
+{
+	strcpy(book[number_of_book].Author_Book, str_new_author);
+}
 
+void Change_Publishing(Library book[], char* str_new_publishing, int number_of_book)
+{
+	strcpy(book[number_of_book].Publishing_Book, str_new_publishing);
+}
+
+void Change_Genre(Library book[], char* str_new_genre, int number_of_book)
+{
+	strcpy(book[number_of_book].Genre_Book, str_new_genre);
+}
 
 int main()
 {
+	Library books[10];
 
+	strcpy(books[0].Name_Book, "Martyr!");
+	strcpy(books[0].Author_Book, "Kaveh Akbar");
+	strcpy(books[0].Publishing_Book, "Knopf Publishing Group");
+	strcpy(books[0].Genre_Book, "Hardcover");
+
+	strcpy(books[1].Name_Book, "Eagle Drums");
+	strcpy(books[1].Author_Book, "Nasuġraq Rainey Hopson");
+	strcpy(books[1].Publishing_Book, "Roaring Brook Press");
+	strcpy(books[1].Genre_Book, "Hardcover");
+
+	strcpy(books[2].Name_Book, "Big");
+	strcpy(books[2].Author_Book, "Vashti Harrison");
+	strcpy(books[2].Publishing_Book, "Little, Brown Books for Young Readers");
+	strcpy(books[2].Genre_Book, "Hardcover");
+
+	strcpy(books[3].Name_Book, "In Every Life");
+	strcpy(books[3].Author_Book, "Marla Frazee");
+	strcpy(books[3].Publishing_Book, "Beach Lane Books");
+	strcpy(books[3].Genre_Book, "Hardcover");
+
+	strcpy(books[4].Name_Book, "Mexikid");
+	strcpy(books[4].Author_Book, "Pedro Martín");
+	strcpy(books[4].Publishing_Book, "Dial Books");
+	strcpy(books[4].Genre_Book, "Paperback");
+
+	strcpy(books[5].Name_Book, "Breath, Eyes, Memory");
+	strcpy(books[5].Author_Book, "Edwidge Danticat");
+	strcpy(books[5].Publishing_Book, "Soho Press");
+	strcpy(books[5].Genre_Book, "Paperback");
+
+	strcpy(books[6].Name_Book, "The Black Panther Party: A Graphic Novel History");
+	strcpy(books[6].Author_Book, "David F. Walker");
+	strcpy(books[6].Publishing_Book, "Ten Speed Graphic");
+	strcpy(books[6].Genre_Book, "Paperback");
+
+	strcpy(books[7].Name_Book, "The Black Panther Party: A Graphic Novel History");
+	strcpy(books[7].Author_Book, "David F. Walker");
+	strcpy(books[7].Publishing_Book, "Ten Speed Graphic");
+	strcpy(books[7].Genre_Book, "Paperback");
+
+	strcpy(books[8].Name_Book, "Land of Milk and Honey");
+	strcpy(books[8].Author_Book, "C. Pam Zhang");
+	strcpy(books[8].Publishing_Book, "Riverhead Books");
+	strcpy(books[8].Genre_Book, "Hardcover");
+
+	strcpy(books[9].Name_Book, "Ulysses: An Illustrated Edition");
+	strcpy(books[9].Author_Book, "James Joyce");
+	strcpy(books[9].Publishing_Book, "Other Press(NY)");
+	strcpy(books[9].Genre_Book, "Hardcover");
+
+	
 
 	return 0;
 }
