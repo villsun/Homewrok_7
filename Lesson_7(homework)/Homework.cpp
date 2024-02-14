@@ -107,7 +107,6 @@ Library* Search_Book_by_Name(Library books[], char* name, int size)
 	}
 
 	int counter_1 = Counter_Name(temp_books, name, size);
-
 	char str_name[50];
 	strcpy(str_name, _strlwr(name));
 
