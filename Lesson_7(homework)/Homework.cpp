@@ -125,6 +125,22 @@ Library* Search_Book_by_Name(Library books[], char* name, int size)
 	return books_1;
 }
 
+void Sort_by_Name(Library books[], int size)
+{
+	for (int i = 0; i < size - 1; i++)
+	{
+		for (int j = i + 1; j < size; j++)
+		{
+			if (strcmp(books[j].Name_Book, books[i].Name_Book) == -1)
+			{
+				swap(books[i], books[j]);
+			}
+		}
+	}
+}
+
+
+
 
 
 
