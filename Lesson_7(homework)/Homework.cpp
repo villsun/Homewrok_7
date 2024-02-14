@@ -75,6 +75,57 @@ Library* Search_Book_by_Author(Library books[], char* author, int size)
 	return books_1;
 }
 
+int Counter_Name(Library books[], char* name, int size)
+{
+	Library temp_books[3];
+	for (int i = 0; i < 3; i++)
+	{
+		temp_books[i] = books[i];
+	}
+
+	char str_name[50];
+	strcpy(str_name, _strlwr(name));
+	int counter_1 = 0;
+
+	for (int i = 0; i < size; i++)
+	{
+		if (strcmp(str_name, _strlwr(temp_books[i].Name_Book)) == 0)
+		{
+			counter_1++;
+		}
+	}
+
+	return counter_1;
+}
+
+Library* Search_Book_by_Name(Library books[], char* name, int size)
+{
+	Library temp_books[3];
+	for (int i = 0; i < 3; i++)
+	{
+		temp_books[i] = books[i];
+	}
+
+	int counter_1 = Counter_Name(temp_books, name, size);
+
+	char str_name[50];
+	strcpy(str_name, _strlwr(name));
+
+	Library* books_1 = new Library[counter_1];
+	int counter_2 = 0;
+
+	for (int i = 0; i < size; i++)
+	{
+		if (strcmp(str_name, _strlwr(temp_books[i].Name_Book)) == 0)
+		{
+			books_1[counter_2] = books[i];
+			counter_2++;
+		}
+	}
+
+	return books_1;
+}
+
 
 
 
