@@ -12,22 +12,27 @@ struct Library
 	char Genre_Book[50];
 };
 
+void Show_Book(const Library books[], int index)
+{
+	cout << "Name: " << books[index].Name_Book << endl;
+	cout << "Author: " << books[index].Author_Book << endl;
+	cout << "Publishing: " << books[index].Publishing_Book << endl;
+	cout << "Genre: " << books[index].Genre_Book << endl;
+	cout << endl;
+}
+
 void Show_Books(const Library books[], int size)
 {
 	for (int i = 0; i < size; i++)
 	{
-		cout << "Name: " << books[i].Name_Book << endl;
-		cout << "Author: " << books[i].Author_Book << endl;
-		cout << "Publishing: " << books[i].Publishing_Book << endl;
-		cout << "Genre: " << books[i].Genre_Book << endl;
-		cout << endl;
+		Show_Book(books, i);
 	}
 }
 
 int Counter_Author(Library books[], char* author, int size)
 {
-	Library temp_books[3];
-	for (int i = 0; i < 3; i++)
+	Library temp_books[10];
+	for (int i = 0; i < size; i++)
 	{
 		temp_books[i] = books[i];
 	}
@@ -49,8 +54,8 @@ int Counter_Author(Library books[], char* author, int size)
 
 Library* Search_Book_by_Author(Library books[], char* author, int size)
 {
-	Library temp_books[3];
-	for (int i = 0; i < 3; i++)
+	Library temp_books[10];
+	for (int i = 0; i < size; i++)
 	{
 		temp_books[i] = books[i];
 	}
@@ -77,8 +82,8 @@ Library* Search_Book_by_Author(Library books[], char* author, int size)
 
 int Counter_Name(Library books[], char* name, int size)
 {
-	Library temp_books[3];
-	for (int i = 0; i < 3; i++)
+	Library temp_books[10];
+	for (int i = 0; i < size; i++)
 	{
 		temp_books[i] = books[i];
 	}
@@ -100,8 +105,8 @@ int Counter_Name(Library books[], char* name, int size)
 
 Library* Search_Book_by_Name(Library books[], char* name, int size)
 {
-	Library temp_books[3];
-	for (int i = 0; i < 3; i++)
+	Library temp_books[10];
+	for (int i = 0; i < size; i++)
 	{
 		temp_books[i] = books[i];
 	}
@@ -189,7 +194,8 @@ void Change_Genre(Library book[], char* str_new_genre, int number_of_book)
 
 int main()
 {
-	Library books[10];
+	const int SIZE = 10;
+	Library books[SIZE];
 
 	strcpy(books[0].Name_Book, "Martyr!");
 	strcpy(books[0].Author_Book, "Kaveh Akbar");
@@ -241,7 +247,49 @@ int main()
 	strcpy(books[9].Publishing_Book, "Other Press(NY)");
 	strcpy(books[9].Genre_Book, "Hardcover");
 
-	void (*p_books[4])(Library[], char*, int) = { Change_Name,  Change_Author, Change_Publishing, Change_Genre };
+	void (*p_functions_change[4])(Library[], char*, int) = { Change_Name,  Change_Author, Change_Publishing, Change_Genre };
+
+	int user_input;
+	char str_search_author[50];
+	int counter = 0;
+	Library* str_books;
+	do
+	{
+		cout << "What do you want to know?\n1 - Show all books\n2 - Search book by author\n3 - Search book by name\n4 - Sort by name\n5 - Sort by author\n6 - Sort by publishing\n7 - Editing book\n-1 - to stop\n";
+		do
+		{
+			cin >> user_input;
+		} while (user_input<-1 || user_input>7);
+
+		switch (user_input)
+		{
+		case 1:
+			Show_Books(books, SIZE);
+			break;
+		case 2:
+			cin.ignore();
+			cout << "Enter author(max size 50)\n";
+			cin.getline(str_search_author, 50);
+			counter = Counter_Author(books, str_search_author, SIZE);
+			str_books = Search_Book_by_Author(books, str_search_author, SIZE);
+			Show_Book(str_books, 0);
+			delete[] str_books;
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		case 5:
+			break;
+		case 6:
+			break;
+		case 7:
+			break;
+		default:
+			break;
+		}
+
+	} while (user_input!=-1);
 
 
 	return 0;
