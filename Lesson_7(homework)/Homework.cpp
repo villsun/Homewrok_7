@@ -12,6 +12,19 @@ struct Library
 	char Genre_Book[50];
 };
 
+void Show_Books(const Library books[], int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		cout << "Name: " << books[i].Name_Book << endl;
+		cout << "Author: " << books[i].Author_Book << endl;
+		cout << "Publishing: " << books[i].Publishing_Book << endl;
+		cout << "Genre: " << books[i].Genre_Book << endl;
+		cout << endl;
+	}
+}
+
+
 
 
 
