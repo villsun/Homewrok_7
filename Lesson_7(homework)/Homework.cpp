@@ -241,7 +241,8 @@ int main()
 	strcpy(books[9].Publishing_Book, "Other Press(NY)");
 	strcpy(books[9].Genre_Book, "Hardcover");
 
-	
+	void (*p_books[4])(Library[], char*, int) = { Change_Name,  Change_Author, Change_Publishing, Change_Genre };
+
 
 	return 0;
 }
