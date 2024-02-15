@@ -203,7 +203,7 @@ int main()
 	strcpy(books[0].Genre_Book, "Hardcover");
 
 	strcpy(books[1].Name_Book, "Eagle Drums");
-	strcpy(books[1].Author_Book, "Nasuġraq Rainey Hopson");
+	strcpy(books[1].Author_Book, "Nasugraq Rainey Hopson");
 	strcpy(books[1].Publishing_Book, "Roaring Brook Press");
 	strcpy(books[1].Genre_Book, "Hardcover");
 
@@ -218,7 +218,7 @@ int main()
 	strcpy(books[3].Genre_Book, "Hardcover");
 
 	strcpy(books[4].Name_Book, "Mexikid");
-	strcpy(books[4].Author_Book, "Pedro Martín");
+	strcpy(books[4].Author_Book, "Pedro Martin");
 	strcpy(books[4].Publishing_Book, "Dial Books");
 	strcpy(books[4].Genre_Book, "Paperback");
 
@@ -232,9 +232,9 @@ int main()
 	strcpy(books[6].Publishing_Book, "Ten Speed Graphic");
 	strcpy(books[6].Genre_Book, "Paperback");
 
-	strcpy(books[7].Name_Book, "The Black Panther Party: A Graphic Novel History");
-	strcpy(books[7].Author_Book, "David F. Walker");
-	strcpy(books[7].Publishing_Book, "Ten Speed Graphic");
+	strcpy(books[7].Name_Book, "The C++");
+	strcpy(books[7].Author_Book, "Mykola Loniuk");
+	strcpy(books[7].Publishing_Book, "The Mykola");
 	strcpy(books[7].Genre_Book, "Paperback");
 
 	strcpy(books[8].Name_Book, "Land of Milk and Honey");
@@ -250,9 +250,11 @@ int main()
 	void (*p_functions_change[4])(Library[], char*, int) = { Change_Name,  Change_Author, Change_Publishing, Change_Genre };
 
 	int user_input;
-	char str_search_author[50];
+	char str_search[50];
 	int counter = 0;
 	Library* str_books;
+	int user_input_book;
+	int user_input_choice;
 	do
 	{
 		cout << "What do you want to know?\n1 - Show all books\n2 - Search book by author\n3 - Search book by name\n4 - Sort by name\n5 - Sort by author\n6 - Sort by publishing\n7 - Editing book\n-1 - to stop\n";
@@ -260,6 +262,12 @@ int main()
 		{
 			cin >> user_input;
 		} while (user_input<-1 || user_input>7);
+
+		if (user_input==-1)
+		{
+			cout << "Goodbye";
+			break;
+		}
 
 		switch (user_input)
 		{
@@ -269,28 +277,71 @@ int main()
 		case 2:
 			cin.ignore();
 			cout << "Enter author(max size 50)\n";
-			cin.getline(str_search_author, 50);
-			counter = Counter_Author(books, str_search_author, SIZE);
-			str_books = Search_Book_by_Author(books, str_search_author, SIZE);
+			cin.getline(str_search, 50);
+			counter = Counter_Author(books, str_search, SIZE);
+			if (counter == 0)
+			{
+				cout << "There is no such author in the library.\nTry again!\n";
+				break;
+			}
+			str_books = Search_Book_by_Author(books, str_search, SIZE);
 			Show_Book(str_books, 0);
+			strcpy(str_search, "");
 			delete[] str_books;
 			break;
 		case 3:
+			cin.ignore();
+			cout << "Enter name(max size 50)\n";
+			cin.getline(str_search, 50);
+			counter = Counter_Name(books, str_search, SIZE);
+			if (counter == 0)
+			{
+				cout << "There is no such name in the library.\nTry again!\n";
+				break;
+			}
+			str_books = Search_Book_by_Name(books, str_search, SIZE);
+			Show_Book(str_books, 0);
+			strcpy(str_search, "");
+			delete[] str_books;
 			break;
 		case 4:
+			Sort_by_Name(books, SIZE);
+			cout << "Completed!\n";
 			break;
 		case 5:
+			Sort_by_Author(books, SIZE);
+			cout << "Completed!\n";
 			break;
 		case 6:
+			Sort_by_Publishing(books, SIZE);
+			cout << "Completed!\n";
 			break;
 		case 7:
+			do
+			{
+				cout << "Enter the book you want to change?(from 1 to 10)\n";
+				cin >> user_input_book;
+			} while (user_input_book<1 || user_input>SIZE);
+
+			do
+			{
+				cout << "Enter choice:\n1 - Change name\n2 - Change author\n3 - Change publishing\n4 - Change genre\n";
+				cin >> user_input_choice;
+			} while (user_input_choice<1 || user_input_choice>4);
+
+			cin.ignore();
+			cout << "Enter what do you want to change in the book(max size 50)\n";
+			cin.getline(str_search, 50);
+			p_functions_change[user_input_choice - 1](books, str_search, user_input_book-1);
+			strcpy(str_search, "");
+			cout << "Completed!\n";
 			break;
 		default:
+			cout << "Error!\n";
 			break;
 		}
 
 	} while (user_input!=-1);
-
 
 	return 0;
 }
